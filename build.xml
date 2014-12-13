@@ -1,0 +1,38 @@
+<project name="DevExam" default="deploy" basedir="." xmlns:sf="antlib:com.salesforce">
+  <property file="build.properties"/>
+  <property environment="env"/>
+
+  <target name="compress">
+  	<mkdir dir="${basedir}/resource/dist"/>
+    <copy todir="${basedir}/resource/dist/LightningMessage">
+      <fileset dir="${basedir}/resource/LightningMessage">
+        <patternset>
+          <include name="**/*.gif"/>
+          <include name="**/*.js"/>
+          <include name="**/*.css"/>
+          <include name="**/glyphicons*"/>
+        </patternset>
+      </fileset>
+    </copy>
+    <zip
+      basedir="${basedir}/resource/dist/LightningMessage"
+      destfile="${basedir}/src/staticresources/LightningMessage.resource"
+    />
+    <delete dir="${basedir}/resource/dist"/>
+  </target>
+
+  <target name="deploy" depends="compress">
+    <copy todir="${basedir}/dist">
+      <fileset dir="${basedir}/src"/>
+    </copy>
+    <replace dir="${basedir}/dist" token="__namespace__" value="${lm.namespace}" />
+    <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" deployRoot="dist"/>
+    <delete dir="${basedir}/dist"/>
+  </target>
+
+  <target name="save">
+    <mkdir dir="code"/>
+    <sf:retrieve username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" retrieveTarget="code" unpackaged="src/package.xml"/>
+  </target>
+
+</project>
