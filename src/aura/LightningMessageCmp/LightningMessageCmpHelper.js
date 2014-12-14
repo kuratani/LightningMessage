@@ -79,9 +79,6 @@
     },
     
     sendMessage : function(component, text, recipients) {
-		var messages = component.get("v.messages");
-        component.set("v.messages", null);
-
         var action = component.get("c.sendMessage");
         action.setParams({
             "text": text,
