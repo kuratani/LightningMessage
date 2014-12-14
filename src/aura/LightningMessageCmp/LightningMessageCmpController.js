@@ -91,7 +91,7 @@
         var members = component.get("v.members");
         var membersCsv = members[0].id;
         for(var i=1; i<members.length; i++) {
-            membersCsv += members[i].id;
+            membersCsv += "," + members[i].id;
         }
         var element = component.find("newMessage").getElement();
         var text = element.value;
