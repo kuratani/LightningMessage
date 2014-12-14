@@ -16,8 +16,6 @@
     },
     
     getConversation : function(component, convId) {
-        console.log("getConversation");
-        console.log(convId);
         var action = component.get("c.getConversation");
         action.setParams({
             "convId": convId
@@ -60,24 +58,18 @@
     },
     
     searchUsers : function(component, query) {
-        console.log("1");
         var action = component.get("c.searchUsers");
         action.setParams({
             "query": query
         });
-        console.log(query);
         action.setCallback(this, function(a) {
-            console.log(a.getReturnValue());
             component.set("v.users", a.getReturnValue());
             component.set("v.userNum", a.getReturnValue().length)
         });
-        console.log("2");
         $A.enqueueAction(action);
-        console.log("3");
     },
     
     replyToMessage : function(component, text) {
-        console.log("replyToMessage");
 		var messages = component.get("v.messages");
         var action = component.get("c.replyToMessage");
         action.setParams({
@@ -93,7 +85,6 @@
     },
     
     sendMessage : function(component, text, recipients) {
-        console.log("sendMessage");
 		var messages = component.get("v.messages");
         var action = component.get("c.sendMessage");
         action.setParams({
@@ -102,7 +93,6 @@
         });
         action.setCallback(this, function(a) {
             var msg = a.getReturnValue();
-            console.log(a.getReturnValue());
             component.set("v.conversationId", msg.conversationId);
 			component.set("v.messages", null);
 			component.set("v.currentPage", "MessageList");
@@ -110,5 +100,5 @@
         });
         $A.enqueueAction(action);
     }
-    
+
 })

@@ -2,8 +2,8 @@
     <link rel="stylesheet" type="text/css" href="/resource/LightningMessage/css/bootstrap.min.css"/>
     
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
-	<aura:handler event="aura:waiting" action="{!c.waiting}" />
-	<aura:handler event="aura:doneWaiting" action="{!c.doneWaiting}" />
+    <aura:handler event="aura:waiting" action="{!c.waiting}" />
+    <aura:handler event="aura:doneWaiting" action="{!c.doneWaiting}" />
     
     <aura:attribute name="currentPage" type="String" default="ConversationList" />
     <aura:attribute name="currentCommunity" type="String" />
@@ -17,7 +17,7 @@
             <a class="right" onclick="{!c.doShowSearchUser}">＋</a>
         </div>
         <div class="contents">
-			<div aura:id="waitingConversationList"/>
+            <div aura:id="waitingConversationList"/>
             <aura:iteration var="conv" items="{!v.conversations}">
                 <div class="list-group" style="margin-bottom: 10px;">
                     <a id="{!conv.id}" class="list-group-item card" onclick="{!c.doShowMessageList}">
@@ -41,13 +41,13 @@
     <aura:attribute name="conversationId" type="String" />
     <aura:attribute name="messages" type="List" />
     <aura:attribute name="message" type="String" />
-	<aura:renderif isTrue="{!v.currentPage == 'MessageList'}">
+    <aura:renderif isTrue="{!v.currentPage == 'MessageList'}">
         <div class="header">
             <a class="left" onclick="{!c.doBackConversationList}">←</a>
             <a class="right" onclick="{!c.doShowRecipients}"><span class="glyphicon glyphicon-user pm-large"/></a>
         </div>
-		<div class="contents">
-			<div aura:id="waitingMessageList"/>
+        <div class="contents">
+            <div aura:id="waitingMessageList"/>
             <ul class="list-view">
                 <div class="input-group" style="padding-bottom: 16px">
                     <textarea aura:id="message" class="form-control" placeholder="メッセージ"></textarea>
@@ -55,7 +55,7 @@
                         <button type="button" class="btn btn-primary btn-large large-btn" onclick="{!c.doReplyToMessage}">投稿</button>
                     </div>
                 </div>
-            	<aura:iteration var="msg" items="{!v.messages}">
+                <aura:iteration var="msg" items="{!v.messages}">
                     <aura:if isTrue="{!not(msg.isMine)}">
                         <div class="thumbs">
                             <img class="thumb" src="{!msg.smallPhotoUrl}" />
@@ -71,24 +71,24 @@
                 </aura:iteration>
             </ul>
         </div>
-	</aura:renderif>
+    </aura:renderif>
 
     <!-- NewConversation -->
     <aura:attribute name="members" type="List" />
     <aura:attribute name="memberNum" type="Integer" default="0" />
     <aura:attribute name="newMessage" type="String" />
-	<aura:renderif isTrue="{!v.currentPage == 'NewConversation'}">
+    <aura:renderif isTrue="{!v.currentPage == 'NewConversation'}">
         <div class="header">
             <a class="left" onclick="{!c.doBackConversationList}">←</a>
         </div>
-		<div class="contents">
-			<div aura:id="waitingNewConversation"/>
-                <div class="input-group" style="padding-bottom: 16px">
-                    <textarea aura:id="newMessage" class="form-control" placeholder="メッセージ"></textarea>
-                    <div class="input-group-btn">
-                        <button type="button" class="btn btn-primary btn-large large-btn" onclick="{!c.doSendMessageNew}">投稿</button>
-                    </div>
+        <div class="contents">
+            <div aura:id="waitingNewConversation"/>
+            <div class="input-group" style="padding-bottom: 16px">
+                <textarea aura:id="newMessage" class="form-control" placeholder="メッセージ"></textarea>
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-primary btn-large large-btn" onclick="{!c.doSendMessageNew}">投稿</button>
                 </div>
+            </div>
             <div style="padding-top: 14px">
                 <ul class="list-group">
                     <li class="list-group-item list-group-item-info">
@@ -112,18 +112,18 @@
                 </ul>
             </div>
         </div>
-	</aura:renderif>
+    </aura:renderif>
     
     <!-- SearchUser -->
     <aura:attribute name="users" type="List" />
     <aura:attribute name="userNum" type="Integer" default="0" />
     <aura:attribute name="query" type="String" />
-	<aura:renderif isTrue="{!v.currentPage == 'SearchUser'}">
+    <aura:renderif isTrue="{!v.currentPage == 'SearchUser'}">
         <div class="header">
             <a class="left" onclick="{!c.doBackNewConversation}">←</a>
         </div>
-		<div class="contents">
-			<div aura:id="waitingSearchUser" class="waiting" />
+        <div class="contents">
+            <div aura:id="waitingSearchUser" class="waiting" />
             <div class="input-group">
                 <span class="input-group-addon">@</span>
                 <ui:inputText aura:id="query"  value="{!v.query}" class="form-control" placeholder="宛先" />
@@ -150,17 +150,17 @@
                 </ul>
             </div>
         </div>
-	</aura:renderif>
+    </aura:renderif>
     
     <!-- ShowRecipients -->
     <aura:attribute name="recipients" type="List" />
     <aura:attribute name="recipientNum" type="Integer" default="0" />
-	<aura:renderif isTrue="{!v.currentPage == 'ShowRecipients'}">
+    <aura:renderif isTrue="{!v.currentPage == 'ShowRecipients'}">
         <div class="header">
             <a class="left" onclick="{!c.doBackMessageList}">←</a>
         </div>
-		<div class="contents">
-			<div aura:id="waitingShowRecipients"/>
+        <div class="contents">
+            <div aura:id="waitingShowRecipients"/>
             <div>
                 <ul class="list-group">
                     <li class="list-group-item list-group-item-info">
@@ -178,5 +178,5 @@
                 </ul>
             </div>
         </div>
-	</aura:renderif>
+    </aura:renderif>
 </aura:component>

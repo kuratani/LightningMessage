@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Document xmlns="http://soap.sforce.com/2006/04/metadata">
     <internalUseOnly>false</internalUseOnly>
-    <description>+Message Tab's icon</description>
+    <description>LightMessage Tab's icon</description>
     <keywords>+Message</keywords>
     <name>+Message Icon</name>
     <public>true</public>
