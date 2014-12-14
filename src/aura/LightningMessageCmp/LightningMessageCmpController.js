@@ -1,7 +1,6 @@
 ({
 	doInit : function(component, event, helper) {
 		helper.getCoversations(component);
-		helper.getCommunities(component);
 	},
 
     doShowMessageList : function(component, event, helper) {

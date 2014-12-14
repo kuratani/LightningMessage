@@ -1,16 +1,4 @@
 public class LightningMessageLogic {
-	@AuraEnabled
-    public static List<Community> getCommunities() {
-        ConnectApi.CommunityPage coms = ConnectApi.Communities.getCommunities();
-        List<Community> result = new List<Community>();
-        for(ConnectApi.Community com : coms.communities) {
-            if(com.privateMessagesEnabled) {
-                result.add(new Community(com));
-            }
-        }
-        return result;
-    }
-
     @AuraEnabled
     public static List<Conversation> getConversations(){
         ConnectApi.ChatterConversationPage page = ConnectApi.ChatterMessages.getConversations();
@@ -96,19 +84,7 @@ public class LightningMessageLogic {
             this.title = user.title;
         }
     }
-
-    public class Community {
-        @AuraEnabled
-        String id { get; set; }
-        @AuraEnabled
-        String name { get; set; }
-        
-        public Community(ConnectApi.Community com) {
-            this.id = com.id;
-            this.name = com.name;
-        }
-    }
-
+    
     public class Conversation {
         @AuraEnabled
         String id { get; set; }

@@ -1,12 +1,4 @@
-({ 
-    getCommunities : function(component) {
-        var action = component.get("c.getCommunities");
-        action.setCallback(this, function(a) {
-            component.set("v.communities", a.getReturnValue());
-        });
-        $A.enqueueAction(action);
-	},
-    
+({
     getCoversations : function(component) {
         var action = component.get("c.getConversations");
         action.setCallback(this, function(a) {
@@ -71,6 +63,8 @@
     
     replyToMessage : function(component, text) {
 		var messages = component.get("v.messages");
+        component.set("v.messages", null);
+
         var action = component.get("c.replyToMessage");
         action.setParams({
             "text": text,
@@ -86,6 +80,8 @@
     
     sendMessage : function(component, text, recipients) {
 		var messages = component.get("v.messages");
+        component.set("v.messages", null);
+        
         var action = component.get("c.sendMessage");
         action.setParams({
             "text": text,
@@ -94,7 +90,6 @@
         action.setCallback(this, function(a) {
             var msg = a.getReturnValue();
             component.set("v.conversationId", msg.conversationId);
-			component.set("v.messages", null);
 			component.set("v.currentPage", "MessageList");
         	this.getConversation(component, msg.conversationId);
         });
