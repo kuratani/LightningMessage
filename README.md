@@ -24,7 +24,7 @@ LightningMessageを利用することで、以下のようなことが実現で�
 
 デモンストレーション
 --------
-* [動画](https://www.youtube.com/watch?v=JURq8FAbLSw)
+* [動画](https://www.youtube.com/watch?v=_o6KD_ri0n4)
 
 
 インストール方法
