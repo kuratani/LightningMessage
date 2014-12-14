@@ -21,7 +21,7 @@
 }
 .THIS.header {
 	height: 50px;
-	width: 96%;
+	width: 100%;
 	position: absolute;
 	top: 0px;
 	padding: 10px;
@@ -70,17 +70,15 @@
     color: #ffffff;
     background-color: #2a94d6;
 }
-.THIS .list-group-item {
-    box-shadow: 0 2px 2px -2px #707070;
-}
-/* ConversationList */
 .THIS .card {
     box-shadow: 0 2px 2px -2px #707070;
     transition: all .3s;
+    background-color: #fdfdfd;
 }
 .THIS .card:hover {
     box-shadow: 0 6px 6px -6px #707070;
 }
+/* ConversationList */
 .THIS .list-item {
 	margin-left: 60px;
 	min-height: 50px;
@@ -120,7 +118,6 @@
     padding-bottom: 14px;
     padding-right: 10px;
 }
-/* line 130, ../sass/_timeline.sass */
 .THIS .my-message .text {
     color: #344a5f;
     background-color: #bbf896;

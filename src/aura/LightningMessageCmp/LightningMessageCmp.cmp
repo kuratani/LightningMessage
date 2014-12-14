@@ -98,10 +98,10 @@
                         </aura:if>
                     </li>
                     <aura:renderIf isTrue="{!memberNum==0}">
-                        <li aura:id="blankNewConversation" class="list-group-item">宛先を追加してください</li>
+                        <li aura:id="blankNewConversation" class="list-group-item card">宛先を追加してください</li>
                     </aura:renderIf>
                     <aura:iteration var="member" items="{!v.members}">
-                        <li class="list-group-item">
+                        <li class="list-group-item card">
                             <div class="profile">
                                 <div class="thumbs"><img class="thumb" src="{!member.smallPhotoUrl}" /></div>
                                 <div class="name">{!member.name}</div>
@@ -137,7 +137,7 @@
                         <li aura:id="blankSearchUser" class="list-group-item">宛先を追加してください</li>
                     </aura:renderIf>
                     <aura:iteration var="user" items="{!v.users}">
-                        <li class="list-group-item">
+                        <li class="list-group-item card">
                             <a id="{!user.id}" onclick="{!c.doAddUser}">
                                 <div class="profile">
                                     <div class="thumbs"><img class="thumb" src="{!user.smallPhotoUrl}" /></div>
@@ -167,7 +167,7 @@
                         <span>宛先</span>
                     </li>
                     <aura:iteration var="recipient" items="{!v.recipients}">
-                        <li class="list-group-item">
+                        <li class="list-group-item card">
                             <div class="profile">
                                 <div class="thumbs"><img class="thumb" src="{!recipient.smallPhotoUrl}" /></div>
                                 <div class="name">{!recipient.name}</div>
