@@ -38,8 +38,8 @@
             var users = a.getReturnValue();
             for(var i=0; i<users.length; i++) {
                 for(var j=0; j<members.length; j++) {
-                    if(users.id == members.id) {
-                        users.splice(i, 1);
+                    if(users[i].id == members[j].id) {
+                        users.splice(i--, 1);
                     }
                 }
             }
@@ -81,7 +81,7 @@
     sendMessage : function(component, text, recipients) {
 		var messages = component.get("v.messages");
         component.set("v.messages", null);
-        
+
         var action = component.get("c.sendMessage");
         action.setParams({
             "text": text,
