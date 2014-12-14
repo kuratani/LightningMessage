@@ -1,4 +1,4 @@
-<aura:component controller="__namespace__.LightningMessageLogic">
+<aura:component controller="__namespace__.LightningMessageLogic" implements="force:appHostable">
     <link rel="stylesheet" type="text/css" href="/resource/LightningMessage/css/bootstrap.min.css"/>
     
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />

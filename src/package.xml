@@ -4,7 +4,6 @@
         <members>LightningMessageLogic</members>
         <name>ApexClass</name>
     </types>
-<!--
     <types>
         <members>LightningMessageTab</members>
         <name>CustomTab</name>
@@ -14,7 +13,6 @@
         <members>LightningMessageDocuments/LightningMessageTab.png</members>
         <name>Document</name>
     </types>
--->
     <types>
         <members>LightningMessage</members>
         <members>LightningMessageCmp</members>
