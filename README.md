@@ -26,6 +26,13 @@ LightningMessageを利用することで、以下のようなことが実現で�
 --------
 * [動画](https://www.youtube.com/watch?v=_o6KD_ri0n4)
 
+スクリーンショット
+--------
+![会話一覧画面](https://raw.github.com/wiki/kuratani/LightningMessage/images/Screenshot01.png)
+![会話画面](https://raw.github.com/wiki/kuratani/LightningMessage/images/Screenshot02.png)
+![新規投稿画面](https://raw.github.com/wiki/kuratani/LightningMessage/images/Screenshot03.png)
+![ナビゲーションメニュー](https://raw.github.com/wiki/kuratani/LightningMessage/images/Screenshot04.png)
+
 
 インストール方法
 --------
