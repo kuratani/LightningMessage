@@ -21,7 +21,7 @@
     <delete dir="${basedir}/resource/dist"/>
   </target>
 
-  <target name="deploy" depends="compress">
+  <target name="deploy">
     <copy todir="${basedir}/dist">
       <fileset dir="${basedir}/src"/>
     </copy>
