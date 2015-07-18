@@ -1,39 +1,41 @@
 <aura:component controller="__namespace__.LightningMessageLogic" implements="force:appHostable">
-    <link rel="stylesheet" type="text/css" href="/resource/LightningMessage/css/bootstrap.min.css"/>
-    
+    <link rel="stylesheet" type="text/css" href="/resource/LightningMessage/css/bootstrap-namespaced.min.css"/>
+
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:handler event="aura:waiting" action="{!c.waiting}" />
     <aura:handler event="aura:doneWaiting" action="{!c.doneWaiting}" />
-    
+
     <aura:attribute name="currentPage" type="String" default="ConversationList" />
     <aura:attribute name="currentCommunity" type="String" />
-    
+
     <!-- ConversationList -->
     <aura:attribute name="communities" type="List" />
     <aura:attribute name="conversations" type="List" />
     <aura:renderif isTrue="{!v.currentPage == 'ConversationList'}">
-        <div class="header">
-            <div class="left"><span class="glyphicon glyphicon-flash"/>Message</div>
-            <a class="right" onclick="{!c.doShowSearchUser}">＋</a>
-        </div>
-        <div class="contents">
-            <div aura:id="waitingConversationList"/>
-            <aura:iteration var="conv" items="{!v.conversations}">
-                <div class="list-group" style="margin-bottom: 10px;">
-                    <a id="{!conv.id}" class="list-group-item card" onclick="{!c.doShowMessageList}">
-                        <div class="thumbs">
-                            <img class="thumb" src="{!conv.smallPhotoUrl}" />
-                        </div>
-                        <div class="list-item">
-                            <div class="info">
-                                <div class="recipient">{!conv.recipient}</div>
-                                <div class="date">{!conv.sentDate}</div>
+        <div class="bootstrap-sf1">
+            <div class="header">
+                <div class="left"><span class="glyphicon glyphicon-flash"/>Message</div>
+                <a class="right" onclick="{!c.doShowSearchUser}">＋</a>
+            </div>
+            <div class="contents">
+                <div aura:id="waitingConversationList"/>
+                <aura:iteration var="conv" items="{!v.conversations}">
+                    <div class="list-group" style="margin-bottom: 10px;">
+                        <a id="{!conv.id}" class="list-group-item card" onclick="{!c.doShowMessageList}">
+                            <div class="thumbs">
+                                <img class="thumb" src="{!conv.smallPhotoUrl}" />
                             </div>
-                            <div class="text">{!conv.message}</div>
-                        </div>
-                    </a>
-                </div>
-            </aura:iteration>
+                            <div class="list-item">
+                                <div class="info">
+                                    <div class="recipient">{!conv.recipient}</div>
+                                    <div class="date">{!conv.sentDate}</div>
+                                </div>
+                                <div class="text">{!conv.message}</div>
+                            </div>
+                        </a>
+                    </div>
+                </aura:iteration>
+            </div>
         </div>
     </aura:renderif>
 
@@ -42,34 +44,36 @@
     <aura:attribute name="messages" type="List" />
     <aura:attribute name="message" type="String" />
     <aura:renderif isTrue="{!v.currentPage == 'MessageList'}">
-        <div class="header">
-            <a class="left" onclick="{!c.doBackConversationList}">←</a>
-            <a class="right" onclick="{!c.doShowRecipients}"><span class="glyphicon glyphicon-user pm-large"/></a>
-        </div>
-        <div class="contents">
-            <div aura:id="waitingMessageList"/>
-            <ul class="list-view">
-                <div class="input-group" style="padding-bottom: 16px">
-                    <textarea aura:id="message" class="form-control" placeholder="メッセージ"></textarea>
-                    <div class="input-group-btn">
-                        <button type="button" class="btn btn-primary btn-large large-btn" onclick="{!c.doReplyToMessage}">投稿</button>
-                    </div>
-                </div>
-                <aura:iteration var="msg" items="{!v.messages}">
-                    <aura:if isTrue="{!not(msg.isMine)}">
-                        <div class="thumbs">
-                            <img class="thumb" src="{!msg.smallPhotoUrl}" />
+        <div class="bootstrap-sf1">
+            <div class="header">
+                <a class="left" onclick="{!c.doBackConversationList}">←</a>
+                <a class="right" onclick="{!c.doShowRecipients}"><span class="glyphicon glyphicon-user pm-large"/></a>
+            </div>
+            <div class="contents">
+                <div aura:id="waitingMessageList"/>
+                <ul class="list-view">
+                    <div class="input-group" style="padding-bottom: 16px">
+                        <textarea aura:id="message" class="form-control" placeholder="メッセージ"></textarea>
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-primary btn-large large-btn" onclick="{!c.doReplyToMessage}">投稿</button>
                         </div>
-                    </aura:if>
-                    <div class="{!msg.isMine ? 'my-message' : 'other-message'}">
-                        <div class="info">
-                            <div class="sender">{!msg.sender}</div>
-                            <div class="date">{!msg.sentDate}</div>
-                        </div>
-                        <div class="text">{!msg.message}</div>
                     </div>
-                </aura:iteration>
-            </ul>
+                    <aura:iteration var="msg" items="{!v.messages}">
+                        <aura:if isTrue="{!not(msg.isMine)}">
+                            <div class="thumbs">
+                                <img class="thumb" src="{!msg.smallPhotoUrl}" />
+                            </div>
+                        </aura:if>
+                        <div class="{!msg.isMine ? 'my-message' : 'other-message'}">
+                            <div class="info">
+                                <div class="sender">{!msg.sender}</div>
+                                <div class="date">{!msg.sentDate}</div>
+                            </div>
+                            <div class="text">{!msg.message}</div>
+                        </div>
+                    </aura:iteration>
+                </ul>
+            </div>
         </div>
     </aura:renderif>
 
@@ -78,104 +82,110 @@
     <aura:attribute name="memberNum" type="Integer" default="0" />
     <aura:attribute name="newMessage" type="String" />
     <aura:renderif isTrue="{!v.currentPage == 'NewConversation'}">
-        <div class="header">
-            <a class="left" onclick="{!c.doBackConversationList}">←</a>
-        </div>
-        <div class="contents">
-            <div aura:id="waitingNewConversation"/>
-            <div class="input-group" style="padding-bottom: 16px">
-                <textarea aura:id="newMessage" class="form-control" placeholder="メッセージ"></textarea>
-                <div class="input-group-btn">
-                    <button type="button" class="btn btn-primary btn-large large-btn" onclick="{!c.doSendMessageNew}">投稿</button>
-                </div>
+        <div class="bootstrap-sf1">
+            <div class="header">
+                <a class="left" onclick="{!c.doBackConversationList}">←</a>
             </div>
-            <div style="padding-top: 14px">
-                <ul class="list-group">
-                    <li class="list-group-item list-group-item-info">
-                        <span>宛先</span>
-                        <aura:if isTrue="{!lessthan(memberNum, 10)}">
-                            <span style="padding-left: 14px;"><a style="color: #ffffff;" onclick="{!c.doGetUser}">＋</a></span>
-                        </aura:if>
-                    </li>
-                    <aura:renderIf isTrue="{!memberNum==0}">
-                        <li aura:id="blankNewConversation" class="list-group-item card">宛先を追加してください</li>
-                    </aura:renderIf>
-                    <aura:iteration var="member" items="{!v.members}">
-                        <li class="list-group-item card">
-                            <div class="profile">
-                                <div class="thumbs"><img class="thumb" src="{!member.smallPhotoUrl}" /></div>
-                                <div class="name">{!member.name}</div>
-                                <div class="title">{!member.title}</div>
-                            </div>
+            <div class="contents">
+                <div aura:id="waitingNewConversation"/>
+                <div class="input-group" style="padding-bottom: 16px">
+                    <textarea aura:id="newMessage" class="form-control" placeholder="メッセージ"></textarea>
+                    <div class="input-group-btn">
+                        <button type="button" class="btn btn-primary btn-large large-btn" onclick="{!c.doSendMessageNew}">投稿</button>
+                    </div>
+                </div>
+                <div style="padding-top: 14px">
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-info">
+                            <span>宛先</span>
+                            <aura:if isTrue="{!lessthan(memberNum, 10)}">
+                                <span style="padding-left: 14px;"><a style="color: #ffffff;" onclick="{!c.doGetUser}">＋</a></span>
+                            </aura:if>
                         </li>
-                    </aura:iteration>
-                </ul>
+                        <aura:renderIf isTrue="{!memberNum==0}">
+                            <li aura:id="blankNewConversation" class="list-group-item card">宛先を追加してください</li>
+                        </aura:renderIf>
+                        <aura:iteration var="member" items="{!v.members}">
+                            <li class="list-group-item card">
+                                <div class="profile">
+                                    <div class="thumbs"><img class="thumb" src="{!member.smallPhotoUrl}" /></div>
+                                    <div class="name">{!member.name}</div>
+                                    <div class="title">{!member.title}</div>
+                                </div>
+                            </li>
+                        </aura:iteration>
+                    </ul>
+                </div>
             </div>
         </div>
     </aura:renderif>
-    
+
     <!-- SearchUser -->
     <aura:attribute name="users" type="List" />
     <aura:attribute name="userNum" type="Integer" default="0" />
     <aura:attribute name="query" type="String" />
     <aura:renderif isTrue="{!v.currentPage == 'SearchUser'}">
-        <div class="header">
-            <a class="left" onclick="{!c.doBackNewConversation}">←</a>
-        </div>
-        <div class="contents">
-            <div aura:id="waitingSearchUser" class="waiting" />
-            <div class="input-group">
-                <span class="input-group-addon">@</span>
-                <ui:inputText aura:id="query"  value="{!v.query}" class="form-control" placeholder="宛先" />
-                <div class="input-group-btn">
-                    <button type="button" class="btn btn-primary btn-large" onclick="{!c.doSearchUser}">検索</button>
-                </div>
+        <div class="bootstrap-sf1">
+            <div class="header">
+                <a class="left" onclick="{!c.doBackNewConversation}">←</a>
             </div>
-            <div style="padding-top: 14px">
-                <ul class="list-group">
-                    <aura:renderIf isTrue="{!v.userNum == 0}">
-                        <li aura:id="blankSearchUser" class="list-group-item">宛先を追加してください</li>
-                    </aura:renderIf>
-                    <aura:iteration var="user" items="{!v.users}">
-                        <li class="list-group-item card">
-                            <a id="{!user.id}" onclick="{!c.doAddUser}">
-                                <div class="profile">
-                                    <div class="thumbs"><img class="thumb" src="{!user.smallPhotoUrl}" /></div>
-                                    <div class="name">{!user.name}</div>
-                                    <div class="title">{!user.companyName} {!user.title}</div>
-                                </div>
-                            </a>
-                        </li>
-                    </aura:iteration>
-                </ul>
+            <div class="contents">
+                <div aura:id="waitingSearchUser" class="waiting" />
+                <div class="input-group">
+                    <span class="input-group-addon">@</span>
+                    <ui:inputText aura:id="query"  value="{!v.query}" class="form-control" placeholder="宛先" />
+                    <div class="input-group-btn">
+                        <button type="button" class="btn btn-primary btn-large" onclick="{!c.doSearchUser}">検索</button>
+                    </div>
+                </div>
+                <div style="padding-top: 14px">
+                    <ul class="list-group">
+                        <aura:renderIf isTrue="{!v.userNum == 0}">
+                            <li aura:id="blankSearchUser" class="list-group-item">宛先を追加してください</li>
+                        </aura:renderIf>
+                        <aura:iteration var="user" items="{!v.users}">
+                            <li class="list-group-item card">
+                                <a id="{!user.id}" onclick="{!c.doAddUser}">
+                                    <div class="profile">
+                                        <div class="thumbs"><img class="thumb" src="{!user.smallPhotoUrl}" /></div>
+                                        <div class="name">{!user.name}</div>
+                                        <div class="title">{!user.companyName} {!user.title}</div>
+                                    </div>
+                                </a>
+                            </li>
+                        </aura:iteration>
+                    </ul>
+                </div>
             </div>
         </div>
     </aura:renderif>
-    
+
     <!-- ShowRecipients -->
     <aura:attribute name="recipients" type="List" />
     <aura:attribute name="recipientNum" type="Integer" default="0" />
     <aura:renderif isTrue="{!v.currentPage == 'ShowRecipients'}">
-        <div class="header">
-            <a class="left" onclick="{!c.doBackMessageList}">←</a>
-        </div>
-        <div class="contents">
-            <div aura:id="waitingShowRecipients"/>
-            <div>
-                <ul class="list-group">
-                    <li class="list-group-item list-group-item-info">
-                        <span>宛先</span>
-                    </li>
-                    <aura:iteration var="recipient" items="{!v.recipients}">
-                        <li class="list-group-item card">
-                            <div class="profile">
-                                <div class="thumbs"><img class="thumb" src="{!recipient.smallPhotoUrl}" /></div>
-                                <div class="name">{!recipient.name}</div>
-                                <div class="title">{!recipient.companyName} {!recipient.title}</div>
-                            </div>
+        <div class="bootstrap-sf1">
+            <div class="header">
+                <a class="left" onclick="{!c.doBackMessageList}">←</a>
+            </div>
+            <div class="contents">
+                <div aura:id="waitingShowRecipients"/>
+                <div>
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-info">
+                            <span>宛先</span>
                         </li>
-                    </aura:iteration>
-                </ul>
+                        <aura:iteration var="recipient" items="{!v.recipients}">
+                            <li class="list-group-item card">
+                                <div class="profile">
+                                    <div class="thumbs"><img class="thumb" src="{!recipient.smallPhotoUrl}" /></div>
+                                    <div class="name">{!recipient.name}</div>
+                                    <div class="title">{!recipient.companyName} {!recipient.title}</div>
+                                </div>
+                            </li>
+                        </aura:iteration>
+                    </ul>
+                </div>
             </div>
         </div>
     </aura:renderif>

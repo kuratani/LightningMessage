@@ -19,7 +19,7 @@
     margin: auto;
     background: url(/resource/LightningMessage/img/loading.gif) no-repeat;
 }
-.THIS.header {
+.THIS .header {
 	height: 50px;
 	width: 100%;
 	position: absolute;
@@ -28,15 +28,15 @@
 	color: #2a94d6;
 	font-size: 150%;
 }
-.THIS.header>.left {
+.THIS .header>.left {
     display: inline-block;
     float: left;
 }
-.THIS.header>.right {
+.THIS .header>.right {
 	display: inline-block;
 	float: right;
 }
-.THIS.contents {
+.THIS .contents {
     width: 100%;
 	padding-top: 50px;
 	padding-bottom: 10px;
@@ -66,7 +66,7 @@
     padding-bottom: 0px;
     box-shadow: 0 2px 2px -2px #707070;
 }
-.THIS  .list-group-item-info {
+.THIS .list-group-item-info {
     color: #ffffff;
     background-color: #2a94d6;
 }
